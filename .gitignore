@@ -1,0 +1,9 @@
+/lib
+lib/*
+*.class
+*.obj
+*.classpath
+*.project
+/doc
+doc/*
+*.settings/
