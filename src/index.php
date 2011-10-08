@@ -19,9 +19,10 @@
    }
    
 //debug print for login, what I get in the array $me
+  /*$likes = $facebook->api('/me/likes');
 echo '<pre>'; 
-print_r($me);
-echo '</pre>';
+print_r($likes);
+echo '</pre>';*/
 
 ?>
 
