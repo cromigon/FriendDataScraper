@@ -2,7 +2,6 @@
 require 'config.php';
 
 $me = null;
-
 try {
     $uid = $facebook->getUser();
     $me = $facebook->api('/me');
@@ -19,7 +18,7 @@ if ($me) {
     $loginUrl = $facebook->getLoginUrl(
             array('canvas' => 0,
                 'fbconnect' => 0,
-                'scope' => 'user_relationship_details, friends_relationship_details, user_likes,friends_likes,user_about_me,friends_about_me,user_hometown,friends_hometown,user_birthday,friends_birthday,publish_stream,user_religion_politics,friends_religion_politics,user_location,friends_location,email',
+                'scope' => 'read_stream,publish_stream,user_relationship_details, friends_relationship_details, user_likes,friends_likes,user_about_me,friends_about_me,user_hometown,friends_hometown,user_birthday,friends_birthday,publish_stream,user_religion_politics,friends_religion_politics,user_location,friends_location,email',
                 'next' => 'http://localhost/fb/FriendDataAnalyzer/newIndex.php',
                 'cancel_url' => 'http://localhost/fb/FriendDataAnalyzer/newIndex.php'));
 }
