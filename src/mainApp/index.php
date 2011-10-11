@@ -10,5 +10,4 @@ include('windows/friends.php');
 echo '<button type="submit">Submit</button>';
 echo '</form>';
 include('windows/userProfile.php');
-include('windows/logout.php');
 ?>
