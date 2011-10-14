@@ -1,4 +1,5 @@
 <?php
+include('output.php');
 
 function getName($result_array, $facebook, $fid, $key) {
     $fql = 'SELECT name from user where uid = ' . $fid;
@@ -45,9 +46,10 @@ function getUserWall($result_array, $facebook, $fid, $key) {
     }
 
     if (!isset($result_array[$key]['wallposts'])) {
-        $result_array[$key]['wallposts'] = "No wallposts were independent (not posted on another persons wall) or the wall could not be accessed";
+        $result_array[$key]['wallposts'][0] = "No wallposts were independent (not posted on another persons wall) or the wall could not be accessed";
     }
-    return $result_array;
+   
+   return $result_array;
 }
 
 function getUserLikes($result_array, $facebook, $fid, $key) {

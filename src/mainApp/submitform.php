@@ -53,6 +53,9 @@ foreach ($_POST['friends'] as $key => $fid) {
       echo '<pre>Index: ' . $key . ', Name: ' . utf8_decode($result_array[0]['name']) . '</pre>'; */
 }
 print("All done!");
+writeToCVSFile($result_array);
+
+
 echo '<pre>';
 print_r($result_array);
 echo '</pre>';
