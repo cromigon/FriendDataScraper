@@ -40,7 +40,8 @@ foreach ($_POST['friends'] as $key => $fid) {
     }
     
     if(isset($_POST['posts']) && $_POST['posts'] == 1) {
-        $result_array = getUserWall($result_array, $facebook, $fid, $key);
+        $nr = $_POST['post_numbers'];
+        $result_array = getUserWall($result_array, $facebook, $fid, $key, $nr);
     }
 
 

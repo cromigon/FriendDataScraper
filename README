@@ -10,7 +10,9 @@ All the data will be anonymized, so that no-one can know who posted/liked what.
 
 Third Parties: Facebook.com
 Facebook is a social networking service and Web site launched in February 2004, operated and privately owned by Facebook, Inc.
-
+The Facebook php-api is released under Apache 2.0 License
+You should have recieved a copy of the Apache 2.0 License 
+along with this program. If not, see <http://www.apache.org/licenses/LICENSE-2.0.txt>
 
 
 Copyright (C) 2011  Niclas Björner
