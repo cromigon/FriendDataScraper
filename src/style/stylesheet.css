@@ -1,0 +1,92 @@
+/* 
+    Document   : stylesheet
+    Created on : 2011-okt-19, 19:52:14
+    Author     : Niclas Björner
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+body {
+    font-family: sans-serif;
+}
+
+div#wrapper {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    width: 800px;
+    border-style: solid;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-color: #456da8;
+    padding: 10px;
+    padding-bottom: 30px;
+    background-color: #cbd7ed;
+}
+
+fieldset {
+    border: none;
+}
+
+div#friends{
+    margin-right: 5px;
+    float: left;
+}
+
+div#form{
+    padding-bottom: 15px;
+}
+
+button{
+    font-size: 20px;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    margin-left: 12px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    background-color: #456da8;
+    color: #ffffff;
+}
+
+select {
+    border-style: solid;
+    border-color: #456da8;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    padding: 5px;
+}
+
+img {
+    float: left;
+    padding-right: 5px;
+}
+
+div#profile {
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-color: #456da8;
+    max-width: 250px;
+    
+    border-right-width: 2px;
+    border-left-width: 2px;
+    border-bottom-width: 2px;
+    border-top-width: 2px;
+    border-right-style: solid;
+    border-left-style: solid;
+    border-bottom-style: solid;
+    border-top-style: solid;
+    margin-top: 25px;
+    padding: 5px;
+}
+img#fluttershy {
+    float: right;
+    height: 150px;
+    margin-right: 25px;
+}

@@ -43,6 +43,12 @@ foreach ($_POST['friends'] as $key => $fid) {
         $nr = $_POST['post_numbers'];
         $result_array = getUserWall($result_array, $facebook, $fid, $key, $nr);
     }
+    
+    if(isset($_POST['posts_containing']) && $_POST['posts_containing'] == 1) {
+        $nr = $_POST['post_numbers'];
+        $data = $_POST['post_data'];
+        $result_array = getUserWallSpec($result_array, $facebook, $fid, $key, $nr, $data);
+    }
 
 
 

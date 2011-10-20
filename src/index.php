@@ -28,9 +28,15 @@ if ($me) {
 <!doctype html>
 <html xmlns:fb="http://www.facebook.com/2008/fbml">
     <head>
-        <title>php-sdk</title>
+        <title>Friend Data Analyzer</title>
+        <link rel ="stylesheet"
+              href="style/stylesheet.css"
+              type="text/css"
+              media="screen"
+              />
     </head>
     <body>
+        <div id="wrapper">
         <?php
         if ($me):
             include('mainApp/index.php');
@@ -44,5 +50,6 @@ if ($me) {
                 <img src="http://static.ak.fbcdn.net/rsrc.php/zB6N8/hash/4li2k73z.gif">
             </a>
         <?php endif ?>
+        </div>
     </body>
 </html>

@@ -1,9 +1,8 @@
 <?php
 $name = utf8_decode($me['name']);
 $user = <<< EOD
-    <br>
-    <br> <img src="https://graph.facebook.com/{$me['id']}/picture">
-    <p> Logged in as <br> {$name}</p>
+    <img src="https://graph.facebook.com/{$me['id']}/picture">
+    <p> <b>Logged in as</b> <br> {$name}</p>
 EOD;
 
 echo $user;
