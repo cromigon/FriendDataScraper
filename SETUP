@@ -1,0 +1,30 @@
+1. Install Apache2, php5 and php5-curl
+	sudo apt-get install apache2 php5 php5-curl
+
+2. Edit /etc/php5/apache2/php.ini
+	uncomment the lines belonging to:
+	display_errors
+	error_reporting
+
+3. Edit /etc/apache2/httpd.conf
+	add the following lines:
+	AddHandler php5-script .php
+	AddType text/html .php
+	DirectoryIndex index.html index.cgi index.pl index.php
+
+4. Make a directory called fb in /var/www
+	sudo mkdir /var/www/fb
+
+5. Make a directory called FriendDataAnalyzer in /var/www/fb
+	sudo mkdir /var/www/fb/FriendDataAnalyzer
+
+6. copy everyting from FriendDataScraper/src to /var/www/fb/FriendDataAnalyzer
+	sudo cp -R /path/to/FriendDataScraper/src/* /var/www/fb/FriendDataAnalyzer
+
+7. Give /var/www/fb/FriendDataAnalyzer/output permissions 777
+	sudo chmod 777 /var/www/fb/FriendDataAnalyzer/output
+
+8. Open your browser and go to http://localhost/fb/FriendDataAnalyzer
+
+9. You're all set to go!
+	

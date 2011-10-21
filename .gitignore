@@ -8,4 +8,5 @@ lib/*
 doc/*
 *.settings/
 nbproject/*
-*/nbproject/*
+/nbproject
+output/*
