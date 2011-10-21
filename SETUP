@@ -24,8 +24,12 @@
 7. Create and Give /var/www/fb/FriendDataAnalyzer/output permissions 777
 	sudo mkdir /var/www/FriendDataAnalyzer/output && chmod 777 /var/www/fb/FriendDataAnalyzer/output
 
-8. Open your browser and go to http://localhost/fb/FriendDataAnalyzer
+8. In the file /var/www/fb/FriendDataAnalyzer/config.php, replace YOUR_APP_ID_here and YOUR_APP_SECRET_HERE with your own appId and appSecret.
+	 'appId'  => 'YOUR_APP_ID_HERE',
+	 'secret' => 'YOUR_APP_SECRET_HERE',
 
-9. You're all set to go!
+9. Open your browser and go to http://localhost/fb/FriendDataAnalyzer
 
-10. Remember, all .csv files ends up in /var/www/fb/FriendDataAnalyzer/output
+10. You're all set to go!
+
+11. Remember, all .csv files ends up in /var/www/fb/FriendDataAnalyzer/output
