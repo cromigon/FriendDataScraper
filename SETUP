@@ -21,10 +21,11 @@
 6. copy everyting from FriendDataScraper/src to /var/www/fb/FriendDataAnalyzer
 	sudo cp -R /path/to/FriendDataScraper/src/* /var/www/fb/FriendDataAnalyzer
 
-7. Give /var/www/fb/FriendDataAnalyzer/output permissions 777
-	sudo chmod 777 /var/www/fb/FriendDataAnalyzer/output
+7. Create and Give /var/www/fb/FriendDataAnalyzer/output permissions 777
+	sudo mkdir /var/www/FriendDataAnalyzer/output && chmod 777 /var/www/fb/FriendDataAnalyzer/output
 
 8. Open your browser and go to http://localhost/fb/FriendDataAnalyzer
 
 9. You're all set to go!
-	
+
+10. Remember, all .csv files ends up in /var/www/fb/FriendDataAnalyzer/output
