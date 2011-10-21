@@ -3,8 +3,8 @@
    require 'facebook-sdk/facebook.php';
 	
 	$facebook = new Facebook(array(
-	  'appId'  => '156435901112829',
-	  'secret' => '04aab90eb749f132b8158f5a8685f5dd',
+	  'appId'  => 'YOUR_APP_ID_HERE',
+	  'secret' => 'YOUR_APP_SECRET_HERE',
 	  'cookie' => true,
           'callback' => 'localhost/fb/FriendDataAnalyzer/',
 	));

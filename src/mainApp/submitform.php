@@ -6,28 +6,7 @@ echo '</pre>';
 require('../config.php');
 include('../functions/functions.php');
 
-/*
-  if (isset($_POST['likes']) && $_POST['likes'] == 1) {
-  $params .= ', likes_count';
-  }
 
-  if (isset($_POST['posts']) && $_POST['posts'] == 1) {
-  $params .= ', wall_count';
-  }
-
-  if (isset($_POST['posts_containing']) && $_POST['posts_containing'] == 1) {
-  $params .= ', ';
-  $data = $_POST['post_data'];
-  }
-
-  if (isset($_POST['city']) && $_POST['city'] == 1) {
-  $params .= ', location';
-  }
-
-  if (isset($_POST['birthyear']) && $_POST['birthyear'] == 1) {
-  $params .= ', birthday_date';
-  }
- */
 $result_array = array();
 
 foreach ($_POST['friends'] as $key => $fid) {
