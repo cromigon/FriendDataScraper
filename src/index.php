@@ -5,13 +5,13 @@ $me = null;
 try {
     $uid = $facebook->getUser();
     $me = $facebook->api('/me');
-    $friends = $facebook->api('/me/friends');
 } catch (FacebookApiException $e) {
     error_log($e);
 }
 
 if ($me) {
     $logoutUrl = $facebook->getLogoutUrl();
+    $friends = $facebook->api('/me/friends');
 } else {
     $loginUrl = $facebook->getLoginUrl(
             array('canvas' => 0,
@@ -35,19 +35,19 @@ if ($me) {
     </head>
     <body>
         <div id="wrapper">
-            <?php
-            if ($me):
-                include('mainApp/index.php');
-                ?>
-                <a href="<?php echo $logoutUrl; ?>">
-                    <img src="http://www.mywindowsphone.net/images/facebookLogOutButton.png">
-                </a>
+        <?php
+        if ($me):
+            include('mainApp/index.php');
+            ?>
+            <a href="<?php echo $logoutUrl; ?>">
+                <img src="http://www.mywindowsphone.net/images/facebookLogOutButton.png">
+            </a>
 
-            <?php else: ?>
-                <a href="<?php echo $loginUrl; ?>">
-                    <img src="http://static.ak.fbcdn.net/rsrc.php/zB6N8/hash/4li2k73z.gif">
-                </a>
-            <?php endif ?>
+        <?php else: ?>
+            <a href="<?php echo $loginUrl; ?>">
+                <img src="http://static.ak.fbcdn.net/rsrc.php/zB6N8/hash/4li2k73z.gif">
+            </a>
+        <?php endif ?>
         </div>
     </body>
 </html>

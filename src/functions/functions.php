@@ -21,11 +21,7 @@ function getUserWall($result_array, $facebook, $fid, $key, $nrOfPosts) {
         'method' => 'fql.query',
         'query' => $fql,
             ));
-    
-    echo '<pre>';
-    print_r($return_object);
-    echo '</pre>';
-    
+
     foreach ($return_object as $index => $arrayindex) {
 
         if ($return_object[$index]['message'] != "") {
@@ -50,7 +46,6 @@ function getUserWallSpec($result_array, $facebook, $fid, $key, $nrOfPosts, $sear
         'query' => $fql,
             ));
 
-
     foreach ($return_object as $index => $arrayindex) {
 
         if ($return_object[$index]['message'] != "") {
@@ -63,7 +58,27 @@ function getUserWallSpec($result_array, $facebook, $fid, $key, $nrOfPosts, $sear
     }
 
     if (!isset($result_array[$key]['wallpostsCont'])) {
-        $result_array[$key]['wallpostsCont'][0] = "No wallposts containting any text, no wallpost containing the specified text, or no access to the users Wall";
+        $result_array[$key]['wallpostsCont'][0] = "No wallposts containting any text, or no access to the users Wall";
+    }
+
+    return $result_array;
+}
+
+function getWallpostsShared($result_array, $facebook, $fid, $key, $nrOfPosts, $friends) {
+    $time = $_SERVER['REQUEST_TIME'];
+    $fql = "SELECT actor_id FROM stream WHERE source_id = " . $fid . " AND target_id !='' AND created_time < " . $time . " LIMIT " . $nrOfPosts;
+    $return_object = $facebook->api(array(
+        'method' => 'fql.query',
+        'query' => $fql,
+            ));
+
+    foreach ($return_object as $index => $arrayindex) {
+
+        if ($return_object[$index]['actor_id'] != "") {
+            if ($return_object[$index]['actor_id'] != $fid) {
+                $result_array[$key]['wallpostTarget'][$index] = $return_object[$index]['actor_id'];
+            }
+        }
     }
 
     return $result_array;
@@ -77,9 +92,7 @@ function getUserLikes($result_array, $facebook, $fid, $key) {
         'query' => $fql,
             ));
 
-    echo '<pre>';
-    print_r($return_object);
-    echo '</pre>';
+
     foreach ($return_object as $index => $arrayindex) {
         $result_array[$key]['likes'][$index] = $return_object[$index]['page_id'];
     }

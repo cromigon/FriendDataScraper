@@ -10,3 +10,5 @@ doc/*
 nbproject/*
 /nbproject
 output/*
+log/*
+/src/nbproject

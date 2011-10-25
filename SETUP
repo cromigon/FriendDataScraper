@@ -21,8 +21,8 @@
 6. copy everyting from FriendDataScraper/src to /var/www/fb/FriendDataAnalyzer
 	sudo cp -R /path/to/FriendDataScraper/src/* /var/www/fb/FriendDataAnalyzer
 
-7. Create and Give /var/www/fb/FriendDataAnalyzer/output permissions 777
-	sudo mkdir /var/www/FriendDataAnalyzer/output && chmod 777 /var/www/fb/FriendDataAnalyzer/output
+7. Create and Give /var/www/fb/FriendDataAnalyzer/output and /var/www/fb/FrientDataAnalyzer/log permissions 777
+	sudo mkdir /var/www/fb/FriendDataAnalyzer/output && mkdir /var/www/fb/FriendDataAnalyzer/log && chmod 777 /var/www/fb/FriendDataAnalyzer/output && chmod 777 /var/www/fb/FriendDataAnalyzer/log
 
 8. In the file /var/www/fb/FriendDataAnalyzer/config.php, replace YOUR_APP_ID_here and YOUR_APP_SECRET_HERE with your own appId and appSecret.
 	 'appId'  => 'YOUR_APP_ID_HERE',
