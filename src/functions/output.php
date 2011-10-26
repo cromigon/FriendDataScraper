@@ -32,6 +32,11 @@ function writeToCVSFile($write_array, $list_of_friends, $anonymization) {
         $listtow = array();
     }
 
+    if (isset($write_array[0]['birthday'])) {
+        $birthday = '../output/birthday.csv';
+        $birthday_write = fopen($birthday, 'w') or die("can't open file");
+        $listbirthday = array();
+    }
 
     foreach ($write_array as $key => $index) {
         if (isset($write_array[$key]['wallposts'])) {
@@ -92,61 +97,81 @@ function writeToCVSFile($write_array, $list_of_friends, $anonymization) {
                     }
                 }
             }
-             if ($anonymization == 1) {
-                    array_unshift($listwps[$key], $key);
-                } else {
-                    array_unshift($listwps[$key], $list_of_friends[$key]);
-                }
-        }
-
-            if (isset($write_array[$key]['towns'])) {
-                $listwpc[$key] = array();
-
-                foreach ($write_array[$key]['towns'] as $townindex => $arrayindextow) {
-                    $arrayindextow = str_replace(',', " ", $arrayindextow);
-                    $arrayindextow = str_replace('\n', " ", $arrayindextow);
-                    $listtow[$key][$townindex] = utf8_decode($arrayindextow);
-                }
-                if ($anonymization == 1) {
-                    array_unshift($listtow[$key], $key);
-                } else {
-                    array_unshift($listtow[$key], $list_of_friends[$key]);
-                }
+            if ($anonymization == 1) {
+                array_unshift($listwps[$key], $key);
+            } else {
+                array_unshift($listwps[$key], $list_of_friends[$key]);
             }
         }
 
-        if (isset($write_array[0]['wallposts'])) {
-            foreach ($listwp as $fieldswp) {
-                fputcsv($wallposts_write, $fieldswp);
+        if (isset($write_array[$key]['towns'])) {
+            $listwpc[$key] = array();
+
+            foreach ($write_array[$key]['towns'] as $townindex => $arrayindextow) {
+                $arrayindextow = str_replace(',', " ", $arrayindextow);
+                $arrayindextow = str_replace('\n', " ", $arrayindextow);
+                $listtow[$key][$townindex] = utf8_decode($arrayindextow);
             }
-            fclose($wallposts_write);
-        }
-        if (isset($write_array[0]['likes'])) {
-            foreach ($listlike as $fieldslike) {
-                fputcsv($likes_write, $fieldslike);
+            if ($anonymization == 1) {
+                array_unshift($listtow[$key], $key);
+            } else {
+                array_unshift($listtow[$key], $list_of_friends[$key]);
             }
-            fclose($likes_write);
         }
 
-        if (isset($write_array[0]['wallpostsCont'])) {
-            foreach ($listwpc as $fieldswpc) {
-                fputcsv($wallpostsCont_write, $fieldswpc);
-            }
-            fclose($wallpostsCont_write);
-        }
 
-        if (isset($write_array[0]['wallpostTarget'])) {
-            foreach ($listwps as $fieldswps) {
-                fputcsv($wallpostsShare_write, $fieldswps);
+        if (isset($write_array[$key]['birthday'])) {
+            $listbirthday[$key] = array();
+            $listbirthday[$key][0] = $write_array[$key]['birthday'];
+
+            if ($anonymization == 1) {
+                array_unshift($listbirthday[$key], $key);
+            } else {
+                array_unshift($listbirthday[$key], $list_of_friends[$key]);
             }
-            fclose($wallpostsShare_write);
-        }
-        
-        if (isset($write_array[0]['towns'])) {
-            foreach ($listtow as $fieldstow) {
-                fputcsv($towns_write, $fieldstow);
-            }
-            fclose($towns_write);
         }
     }
+
+    if (isset($write_array[0]['wallposts'])) {
+        foreach ($listwp as $fieldswp) {
+            fputcsv($wallposts_write, $fieldswp);
+        }
+        fclose($wallposts_write);
+    }
+    if (isset($write_array[0]['likes'])) {
+        foreach ($listlike as $fieldslike) {
+            fputcsv($likes_write, $fieldslike);
+        }
+        fclose($likes_write);
+    }
+
+    if (isset($write_array[0]['wallpostsCont'])) {
+        foreach ($listwpc as $fieldswpc) {
+            fputcsv($wallpostsCont_write, $fieldswpc);
+        }
+        fclose($wallpostsCont_write);
+    }
+
+    if (isset($write_array[0]['wallpostTarget'])) {
+        foreach ($listwps as $fieldswps) {
+            fputcsv($wallpostsShare_write, $fieldswps);
+        }
+        fclose($wallpostsShare_write);
+    }
+
+    if (isset($write_array[0]['towns'])) {
+        foreach ($listtow as $fieldstow) {
+            fputcsv($towns_write, $fieldstow);
+        }
+        fclose($towns_write);
+    }
+
+    if (isset($write_array[0]['birthday'])) {
+        foreach ($listbirthday as $fieldsbirthday) {
+            fputcsv($birthday_write, $fieldsbirthday);
+        }
+        fclose($birthday_write);
+    }
+}
+
 ?>

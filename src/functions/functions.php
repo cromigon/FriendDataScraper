@@ -114,4 +114,20 @@ function getHomeTown($result_array, $facebook, $fid, $key) {
     return $result_array;
 }
 
+function getBirthday($result_array, $facebook, $fid, $key) {
+
+    $fql = 'SELECT birthday_date from user where uid = ' . $fid;
+    $return_object = $facebook->api(array(
+        'method' => 'fql.query',
+        'query' => $fql,
+            ));
+    if($return_object[0]['birthday_date'] == '')
+    {
+        $return_object[0]['birthday_date'] = 'No Birthdate given';
+    }
+    $result_array[$key]['birthday'] = $return_object[0]['birthday_date'];
+
+    return $result_array;
+}
+
 ?>

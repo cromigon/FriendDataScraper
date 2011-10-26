@@ -34,6 +34,12 @@ foreach ($_POST['friends'] as $key => $fid) {
     if(isset($_POST['city']) && $_POST['city'] == 1) {
         $result_array = getHomeTown($result_array, $facebook, $fid, $key);
     }
+    
+    if(isset($_POST['birthyear']) && $_POST['birthyear'] == 1) {
+        $result_array = getBirthday($result_array, $facebook, $fid, $key);
+    }
+    
+    
 
 }
 
