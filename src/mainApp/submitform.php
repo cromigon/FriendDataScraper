@@ -5,6 +5,7 @@ include('../functions/functions.php');
 $result_array = array();
 $friendlist = $_POST['friends'];
 $anonymization = $_POST['anonymize'];
+$me = $facebook->api('/me');
 
 foreach ($_POST['friends'] as $key => $fid) {
     set_time_limit(0);
@@ -75,5 +76,5 @@ echo '<br />';
 print("You can find the log in fb/FriendDataAnalyzer/log/frienddataanalyzer.log in your webroot.");
 echo '<br /><br />';
 echo '<a href="http://localhost/fb/FriendDataAnalyzer">Return to the application</a>';
-writeToCVSFile($result_array, $friendlist, $anonymization);
+writeToCVSFile($result_array, $friendlist, $anonymization, $me);
 ?>
