@@ -1,39 +1,39 @@
 <?php
 
-function writeToCVSFile($write_array, $list_of_friends, $anonymization) {
+function writeToCVSFile($write_array, $list_of_friends, $anonymization, $me) {
 
     if (isset($write_array[0]['wallposts'])) {
-        $wallposts = '../output/wallposts.csv';
+        $wallposts = '../output/' . hash('adler32', $me['id']) . '-wallposts.csv';
         $wallposts_write = fopen($wallposts, 'w') or die("can't open file");
         $listwp = array();
     }
 
     if (isset($write_array[0]['likes'])) {
-        $likes = '../output/likes.csv';
+        $likes = '../output/' . hash('adler32', $me['id']) . '-likes.csv';
         $likes_write = fopen($likes, 'w') or die("can't open file");
         $listlike = array();
     }
 
     if (isset($write_array[0]['wallpostsCont'])) {
-        $wallpostsCont = '../output/wallpostsCont.csv';
+        $wallpostsCont = '../output/' . hash('adler32', $me['id']) . '-wallpostsCont.csv';
         $wallpostsCont_write = fopen($wallpostsCont, 'w') or die("can't open file");
         $listwpc = array();
     }
 
     if (isset($write_array[0]['wallpostTarget'])) {
-        $wallpostsShare = '../output/wallpostsShared.csv';
+        $wallpostsShare = '../output/' . hash('adler32', $me['id']) . '-wallpostsShared.csv';
         $wallpostsShare_write = fopen($wallpostsShare, 'w') or die("can't open file");
         $listwps = array();
     }
 
     if (isset($write_array[0]['towns'])) {
-        $towns = '../output/towns.csv';
+        $towns = '../output/' . hash('adler32', $me['id']) . '-towns.csv';
         $towns_write = fopen($towns, 'w') or die("can't open file");
         $listtow = array();
     }
 
     if (isset($write_array[0]['birthday'])) {
-        $birthday = '../output/birthday.csv';
+        $birthday = '../output/' . hash('adler32', $me['id']) . '-birthday.csv';
         $birthday_write = fopen($birthday, 'w') or die("can't open file");
         $listbirthday = array();
     }
