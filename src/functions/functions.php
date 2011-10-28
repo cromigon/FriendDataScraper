@@ -58,7 +58,7 @@ function getUserWallSpec($result_array, $facebook, $fid, $key, $nrOfPosts, $sear
     }
 
     if (!isset($result_array[$key]['wallpostsCont'])) {
-        $result_array[$key]['wallpostsCont'][0] = "No wallposts containting any text, or no access to the users Wall";
+        $result_array[$key]['wallpostsCont'][0] = "No wallposts containting any text, the specified text or no access to the users Wall";
     }
 
     return $result_array;
@@ -96,6 +96,9 @@ function getUserLikes($result_array, $facebook, $fid, $key) {
     foreach ($return_object as $index => $arrayindex) {
         $result_array[$key]['likes'][$index] = $return_object[$index]['page_id'];
     }
+    if (empty($return_object)) {
+        $result_array[$key]['likes'][0] = 'no likes found';
+    }
 
     return $result_array;
 }
@@ -121,8 +124,7 @@ function getBirthday($result_array, $facebook, $fid, $key) {
         'method' => 'fql.query',
         'query' => $fql,
             ));
-    if($return_object[0]['birthday_date'] == '')
-    {
+    if ($return_object[0]['birthday_date'] == '') {
         $return_object[0]['birthday_date'] = 'No Birthdate given';
     }
     $result_array[$key]['birthday'] = $return_object[0]['birthday_date'];
