@@ -1,5 +1,4 @@
 <?php
-
 $form = <<< EOD
 <fieldset>
     <Input type = 'Radio' Name ='anonymize' value= '1' checked='checked'>Anonymize

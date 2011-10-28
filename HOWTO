@@ -1,0 +1,106 @@
+How to add your own functions.
+
+[In mainApp/windows/form.php]
+Add the field that you will use to "trigger" the function. 
+For example, let's say that I want the name for all my friends that I select.
+
+I would then add the following code inside the <fieldset> tag.
+	<input type="checkbox" name="names" value="1" /> Names<br />
+
+This would add an checkbox with the name "Names" in the GUI. 
+
+[In mainApp/submitform.php]
+Add code to capture and check if your selection were checked when the user pressed submit.
+Then you will need to add the function to add the data from the scraping in the $result_array.
+
+I will demonstrate following the example with Names.
+
+Inside the first foreach() i would add the following code
+	if (isset($_POST['names']) && $_POST['names'] == 1) {
+        	$result_array = getNames($result_array, $facebook, $fid, $key);
+    	}
+getNames is the name of the function that I will add later in this how-to.
+$result_array = The array that holds all of our scraped data.
+$facebook = the connection to facebook trough our login.
+$fid = The ID of the friend that we're currently collection information from.
+$key = The number of the place in the scraping order that the current friend has.
+
+[In functions/functions.php]
+Here we need to add the code for the actual scraping.
+I've been using FQL requests for getting the data so far in the applikation, but it's not restricted to FQL.
+
+I would in the case of names firstly add the function getNames()
+And I would add the following code to the application:
+	
+	function getNames($result_array, $facebook, $fid, $key) {
+    		$fql = 'SELECT name from user where uid = ' . $fid;
+    		$return_object = $facebook->api(array(
+       		'method' => 'fql.query',
+        	'query' => $fql,
+            	));
+
+    		$result_array[$key]['name'] = $return_object[0]['name'];
+
+   		 return $result_array;
+	}
+
+$fql = this is the FQL request, as you can see I'm collecting the data from the user tabel.
+$return_object = This is the data that facebook returns to me.
+
+I am putting the data in a space in the array that I call name, I am making sure that it gets in the $key space of the array, that is important for the post-processing of the data.
+
+[In functions/output.php]
+Now it's time for the post-processing, all this is compleated and put into .csv files.
+The data needs to be parsed before going into the files, to make sure that no ',' or such are in the data.
+There are some steps that needs to be made before this is compleated however, all of these steps are all made in the function writeToCSVFile().
+I will show you them using the names example. 
+
+1. Check if there is any names in the array, if it is: make a new .csv file.
+	if (isset($write_array[0]['name'])) {
+        $name = '../output/' . hash('adler32', $me['id']) . '-name.csv';
+        $name_write = fopen($name, 'w') or die("can't open file");
+        $listnames = array();
+    	}
+
+$name = this is the path to the file, currently it's going into the outputfolder in FriendDataAnalyzer/
+$me = this is the current users (the one doing the collecting) information, I'm using the UID of the current user to make an hash that is used to identify the files that this user has made in the folder.
+$name_write = this is the write-stream to the .csv file.
+$listnames = this is an array that will be used to temporary store the data that will be put into the .csv
+
+2. Parse all the information, make sure that no ',' is in the data and make it ready for writing.
+Here the data is changed based on if the data is anonymized or not.
+
+	if (isset($write_array[$key]['name'])) {
+        	$listnames[$key] = array();
+	        $name = str_replace(',', " ", $result_array[$key]['name']);	
+	        $listnames[$key][0] = utf8_decode($name);
+       		if ($anonymization == 1) {
+     	  		 array_unshift($listnames[$key], $key);
+        	} else {
+       	   		array_unshift($listnames[$key], $list_of_friends[$key]);
+        	}
+        }
+Here I take the collected data, replaces any ',' with an whitespace and put it in my list. If I were to have an array with data that I were to parse, I would do it in and foreach loop.
+Also, I check if the data is to be anonymized or not. 
+If it is, then I take the $key of the current friend and use that as an Index. This will be the same in all the files for the current session.
+I place the Index on the first place in the array, this is because I want it first in the .csv file.
+
+If the data won't be anonymized, I use the friends ID as an Index.
+
+$name = temporary storage for the name.
+$list_of_friends = a list of the friends that I'm collecting data from.
+
+3. Make sure that the data is being written into an .csv file
+This is where the magic happens.
+All the data from the $list array is being collected and put into an .csv file.
+	if (isset($write_array[0]['name'])) {
+        foreach ($listnames as $fieldsname) {
+            fputcsv($names_write, $fieldsname);
+        }
+        fclose($names_write);
+    }
+I'm going trough the array $listnames and put every value in the csv file.
+When I'm done, I close the file from further input.
+
+And there you have it, you'r function for collecting the names and store them in an .csv is compleated.
+You can find information about FQL on https://developers.facebook.com
