@@ -8,6 +8,9 @@ Description: FriendDataScraper collects specific data from your friends on faceb
 to analyze connections between friends. 
 All the data will be anonymized, so that no-one can know who posted/liked what.
 
+The data that you get out looks like this:
+friendIndex, data, data, data ...
+
 Third Parties: Facebook.com
 Facebook is a social networking service and Web site launched in February 2004, operated and privately owned by Facebook, Inc.
 The Facebook php-api is released under Apache 2.0 License
