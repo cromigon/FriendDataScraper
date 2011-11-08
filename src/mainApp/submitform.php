@@ -6,6 +6,7 @@ $result_array = array();
 $friendlist = $_POST['friends'];
 $anonymization = $_POST['anonymize'];
 $me = $facebook->api('/me');
+array_unshift($friendlist, $me['id']);
 
 foreach ($_POST['friends'] as $key => $fid) {
     set_time_limit(0);
